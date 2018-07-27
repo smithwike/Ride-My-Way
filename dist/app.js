@@ -22,7 +22,7 @@ var port = process.env.PORT || 5008;
 var app = (0, _express2.default)();
 
 app.use(_bodyParser2.default.json());
-app.use('/rides', _rides2.default);
+app.use('/api/v1/rides', _rides2.default);
 
 // error handler
 app.use(function (err, req, res, next) {

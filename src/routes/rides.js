@@ -3,6 +3,7 @@ import uniqid from 'uniqid';
 import rideOffers from '../models/rideOffers';
 
 const rideCreateSuccess = { message: 'Your offer has been successfully created' };
+const rideRequestSuccess = { message: 'Your request has been created' };
 const error = {
   error: '',
   status: 401,
@@ -42,12 +43,38 @@ ridesRouter.post('/', verifyParameters, (req, res, next) => {
     destination: reqBody.destination,
     takeOffTime: reqBody.takeOffTime,
     totalSeats: reqBody.totalSeats,
+    requests: [],
   };
   if (rideOffers.push(newRide)) {
     res.send(rideCreateSuccess);
   } else {
     error.error = 'An unknown error occured';
     error.status = 500;
+    next(error);
+  }
+});
+
+ridesRouter.post('/:id/requests', (req, res, next) => {
+  const reqBody = req.body;
+  const rideId = req.params.id;
+  let isAdded = false;
+  if (reqBody.name) {
+    rideOffers.forEach((item) => {
+      if (item.id === rideId) {
+        item.requests.push(reqBody.name);
+        isAdded = true;
+      }
+    });
+    if (isAdded) {
+      res.send(rideRequestSuccess);
+    } else {
+      error.error = 'Invalid ride';
+      error.status = 404;
+      next(error);
+    }
+  } else {
+    error.error = 'Please append the name parameter in your request';
+    error.status = 400;
     next(error);
   }
 });

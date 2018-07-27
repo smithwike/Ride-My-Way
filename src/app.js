@@ -6,7 +6,7 @@ const port = process.env.PORT || 5008;
 const app = express();
 
 app.use(bodyParser.json());
-app.use('/rides', ridesRouter);
+app.use('/api/v1/rides', ridesRouter);
 
 // error handler
 app.use((err, req, res, next) => {
