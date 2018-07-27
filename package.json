@@ -16,13 +16,15 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
     "expect": "^23.4.0",
-    "mocha": "^5.2.0"
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
   },
   "scripts": {
     "build": "npm run clean && mkdir dist && babel src -s -d dist",
-    "clean":"rm -rf dist",
+    "clean": "rm -rf dist",
     "test:dev": "mocha --compilers js:babel-core/register src/test/*.test.js",
-    "test": "npm run build && mocha dist/test/*.test.js --exit --timeout=20000",
+    "test": "npm run build && nyc mocha dist/test/*.test.js --exit --timeout=20000",
     "lint": "./node_modules/.bin/eslint src --fix"
   },
   "repository": {
