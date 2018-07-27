@@ -1,0 +1,30 @@
+{
+  "name": "ride-my-way",
+  "version": "1.0.0",
+  "description": "This is ride-my-way app",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint src --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smithwike/ride-my-way.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smithwike/ride-my-way/issues"
+  },
+  "homepage": "https://github.com/smithwike/ride-my-way#readme"
+}
