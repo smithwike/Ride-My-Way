@@ -9,10 +9,10 @@ app.use(bodyParser.json());
 app.use('/rides', ridesRouter);
 
 // error handler
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.json({
-    message: err.message,
+    err: err.message,
     error: req.app.get('env') === 'development' ? err : {},
   });
 });

@@ -25,10 +25,10 @@ app.use(_bodyParser2.default.json());
 app.use('/rides', _rides2.default);
 
 // error handler
-app.use(function (err, req, res) {
+app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.json({
-    message: err.message,
+    err: err.message,
     error: req.app.get('env') === 'development' ? err : {}
   });
 });

@@ -23,7 +23,19 @@ ridesRouter.get('/', (req, res) => {
   res.send(rideOffers);
 });
 
-ridesRouter.post('/', verifyParameters, (req, res) => {
+ridesRouter.get('/:id', (req, res, next) => {
+  const rideId = req.params.id;
+  rideOffers.forEach((item) => {
+    if (item.id === rideId) {
+      res.send(item);
+    }
+  });
+  error.error = 'Invalid ride';
+  error.status = 404;
+  next(error);
+});
+
+ridesRouter.post('/', verifyParameters, (req, res, next) => {
   const reqBody = req.body;
   const newRide = {
     id: uniqid(),
@@ -36,7 +48,7 @@ ridesRouter.post('/', verifyParameters, (req, res) => {
   } else {
     error.error = 'An unknown error occured';
     error.status = 500;
-    res.status(500).send(error);
+    next(error);
   }
 });
 
