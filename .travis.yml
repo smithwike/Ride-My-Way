@@ -4,3 +4,9 @@ node_js:
 scripts:
   - "npm test"
 after_success: npm run coverage
+after_script:
+  - codeclimate-test-reporter < ./coverage/lcov.info
+addons:
+  code_climate:
+    repo_token:
+      secure: "570d9defa9305ef3bb2e1608a72ddbf7c4989b52a0b2f968d1493d7e18a5511e"
