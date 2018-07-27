@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/app.js"],"names":["x","y","console","log"],"mappings":";;AAAA,IAAMA,IAAI,EAAV;AACA,IAAMC,IAAID,IAAI,EAAd;AACAE,QAAQC,GAAR,CAAYF,CAAZ","file":"app.js","sourcesContent":["const x = 35;\nconst y = x + 70;\nconsole.log(y);\n"]}
