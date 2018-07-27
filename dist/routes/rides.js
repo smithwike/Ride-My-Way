@@ -19,6 +19,7 @@ var _rideOffers2 = _interopRequireDefault(_rideOffers);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var rideCreateSuccess = { message: 'Your offer has been successfully created' };
+var rideRequestSuccess = { message: 'Your request has been created' };
 var error = {
   error: '',
   status: 401
@@ -57,13 +58,39 @@ ridesRouter.post('/', verifyParameters, function (req, res, next) {
     id: (0, _uniqid2.default)(),
     destination: reqBody.destination,
     takeOffTime: reqBody.takeOffTime,
-    totalSeats: reqBody.totalSeats
+    totalSeats: reqBody.totalSeats,
+    requests: []
   };
   if (_rideOffers2.default.push(newRide)) {
     res.send(rideCreateSuccess);
   } else {
     error.error = 'An unknown error occured';
     error.status = 500;
+    next(error);
+  }
+});
+
+ridesRouter.post('/:id/requests', function (req, res, next) {
+  var reqBody = req.body;
+  var rideId = req.params.id;
+  var isAdded = false;
+  if (reqBody.name) {
+    _rideOffers2.default.forEach(function (item) {
+      if (item.id === rideId) {
+        item.requests.push(reqBody.name);
+        isAdded = true;
+      }
+    });
+    if (isAdded) {
+      res.send(rideRequestSuccess);
+    } else {
+      error.error = 'Invalid ride';
+      error.status = 404;
+      next(error);
+    }
+  } else {
+    error.error = 'Please append the name parameter in your request';
+    error.status = 400;
     next(error);
   }
 });
