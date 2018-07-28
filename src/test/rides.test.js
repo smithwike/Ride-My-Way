@@ -13,7 +13,23 @@ describe('GET /rides', () => {
     }));
 });
 
+describe('GET /rides/<rideId>', () => {
+  it('should fetch a single ride offer with valid id', () => request(app)
+    .get('/api/v1/rides/qruhn9b5h4jk4f8uiw')
+    .set('Accept', 'application/json')
+    .expect(200)
+    .then((response) => {
+      expect(response.body).toHaveProperty('destination', 'Lokoja');
+    }));
 
+  it('should return 404 with invalid ride id', () => request(app)
+    .get('/api/v1/rides/qruhn9b5h4jk4f8u')
+    .set('Accept', 'application/json')
+    .expect(404)
+    .then((response) => {
+      expect(response.body.error.error).toContain('Invalid ride')
+    }));
+});
 describe('POST /rides', () => {
   it('should create a new ride offer', () => request(app)
     .post('/api/v1/rides')
