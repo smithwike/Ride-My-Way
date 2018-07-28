@@ -39,6 +39,9 @@
     "lint": "./node_modules/.bin/eslint src --fix",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
+  "engines":{
+  "node":"6.2.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/smithwike/ride-my-way.git"
