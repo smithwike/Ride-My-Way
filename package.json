@@ -31,7 +31,8 @@
     "supertest": "^3.1.0"
   },
   "scripts": {
-    "start": "npm run build && node dist/app.js",
+    "start": "node dist/app.js",
+    "start-dev": "npm run build && node dist/app.js",
     "build": "npm run clean && mkdir dist && babel src -s -d dist",
     "clean": "rm -rf dist",
     "test:dev": "mocha --compilers js:babel-core/register src/test/*.test.js",
