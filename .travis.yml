@@ -3,17 +3,13 @@ node_js:
   - "stable"
 env:
   global:
-    - CC_TEST_REPORTER_ID=570d9defa9305ef3bb2e1608a72ddbf7c4989b52a0b2f968d1493d7e18a5511e\
-    - SECRET_KEY='simplesecret'
+    - CC_TEST_REPORTER_ID=570d9defa9305ef3bb2e1608a72ddbf7c4989b52a0b2f968d1493d7e18a5511e
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 scripts:
-  - "nyc --reporter=lcov npm test"
+  - "npm test"
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 after_success: npm run coverage
-cache:
-  directories:
-    - "node_modules"
