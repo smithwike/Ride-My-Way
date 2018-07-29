@@ -1,9 +1,13 @@
 import { Client } from 'pg';
 
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/ride-my-way';
+let connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/ride-my-way';
+
+if (process.env.current_env === 'test') {
+  connectionString = 'postgres://localhost:5432/ride-my-way-test';
+}
+
 const usersTable = 'users';
 // const orderTable = 'orders';
-
 
 const getAll = () => new Promise((resolve, reject) => {
   const client = new Client(connectionString);

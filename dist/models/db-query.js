@@ -8,9 +8,13 @@ exports.getUser = exports.createUser = exports.getAll = undefined;
 var _pg = require('pg');
 
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/ride-my-way';
+
+if (process.env.current_env === 'test') {
+  connectionString = 'postgres://localhost:5432/ride-my-way-test';
+}
+
 var usersTable = 'users';
 // const orderTable = 'orders';
-
 
 var getAll = function getAll() {
   return new Promise(function (resolve, reject) {
