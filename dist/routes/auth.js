@@ -97,9 +97,7 @@ authRouter.post('/login', function (req, res, next) {
   // confirm email exists in database
 
   (0, _dbQuery.getUser)(req.body.email).then(function (result) {
-
     if (_bcrypt2.default.compareSync(req.body.password, result[0].user_password)) {
-      console.log("bycrypt successful");
       var payload = {};
       payload.username = result[0].user_name;
       payload.email = result[0].user_email;
