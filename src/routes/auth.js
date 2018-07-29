@@ -83,7 +83,6 @@ authRouter.post('/login', (req, res, next) => {
     .then((result) => {
 
       if (bcrypt.compareSync(req.body.password, result[0].user_password)) {
-         console.log("bycrypt successful");
         const payload = {};
         payload.username = result[0].user_name;
         payload.email = result[0].user_email;
