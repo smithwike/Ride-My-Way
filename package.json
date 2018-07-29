@@ -8,6 +8,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "nodemon": "^1.18.3",
+    "pg": "^7.4.3",
     "uniqid": "^5.0.3"
   },
   "devDependencies": {
@@ -40,8 +41,8 @@
     "lint": "./node_modules/.bin/eslint src --fix",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
-  "engines":{
-  "node":"10.6.0"
+  "engines": {
+    "node": "10.6.0"
   },
   "repository": {
     "type": "git",

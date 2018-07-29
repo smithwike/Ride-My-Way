@@ -27,7 +27,7 @@ describe('GET /rides/<rideId>', () => {
     .set('Accept', 'application/json')
     .expect(404)
     .then((response) => {
-      expect(response.body.error.error).toContain('Invalid ride')
+      expect(response.body.error.error).toContain('Invalid ride');
     }));
 });
 describe('POST /rides', () => {
