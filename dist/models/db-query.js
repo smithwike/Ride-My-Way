@@ -14,7 +14,7 @@ var usersTable = 'users';
 
 var getAll = function getAll() {
   return new Promise(function (resolve, reject) {
-    var client = new _pg.Client(connectionString);
+    var client = new _pg.Client({ connectionString: connectionString, ssl: true });
     client.connect().then(function () {
       var sql = 'SELECT * FROM ' + usersTable;
       client.query(sql).then(function (result) {
@@ -32,7 +32,7 @@ var getAll = function getAll() {
 
 var createUser = function createUser(item) {
   return new Promise(function (resolve, reject) {
-    var client = new _pg.Client(connectionString);
+    var client = new _pg.Client({ connectionString: connectionString, ssl: true });
     client.connect().then(function () {
       var sql = 'INSERT INTO ' + usersTable + ' (user_email, user_password, user_name) VALUES ($1, $2, $3)';
       var params = [item.email, item.password, item.name];
@@ -51,7 +51,7 @@ var createUser = function createUser(item) {
 
 var getUser = function getUser(email) {
   return new Promise(function (resolve, reject) {
-    var client = new _pg.Client(connectionString);
+    var client = new _pg.Client({ connectionString: connectionString, ssl: true });
     client.connect().then(function () {
       var sql = 'SELECT * FROM ' + usersTable + ' WHERE user_email = $1;';
       var params = [email];
@@ -70,4 +70,6 @@ var getUser = function getUser(email) {
 exports.getAll = getAll;
 exports.createUser = createUser;
 exports.getUser = getUser;
+
+// CREATE TABLE users(user_id serial PRIMARY KEY, user_name text NOT NULL, user_email text UNIQUE NOT NULL, user_password text NOT NULL);
 //# sourceMappingURL=db-query.js.map
