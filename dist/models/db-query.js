@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getUser = exports.createUser = exports.getAll = undefined;
+exports.clearTable = exports.getUser = exports.createUser = exports.getAll = undefined;
 
 var _pg = require('pg');
 
@@ -71,9 +71,27 @@ var getUser = function getUser(email) {
   });
 };
 
+var clearTable = function clearTable() {
+  return new Promise(function (resolve, reject) {
+    var client = new _pg.Client(connectionString);
+    client.connect().then(function () {
+      var sql = 'DELETE FROM ' + usersTable + ';';
+      client.query(sql).then(function (result) {
+        resolve(result.rowCount);
+        client.end();
+      }).catch(function (e) {
+        return reject(e);
+      });
+    }).catch(function (e) {
+      return reject(e);
+    });
+  });
+};
+
 exports.getAll = getAll;
 exports.createUser = createUser;
 exports.getUser = getUser;
+exports.clearTable = clearTable;
 
 // CREATE TABLE users(user_id serial PRIMARY KEY, user_name text NOT NULL, user_email text UNIQUE NOT NULL, user_password text NOT NULL);
 // const client = new Client({ connectionString, ssl: true });

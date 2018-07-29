@@ -59,8 +59,24 @@ const getUser = email => new Promise((resolve, reject) => {
     }).catch(e => reject(e));
 });
 
+const clearTable = () => new Promise((resolve, reject) => {
+  const client = new Client(connectionString);
+  client.connect()
+    .then(() => {
+      const sql = `DELETE FROM ${usersTable};`;
+      client.query(sql)
+        .then((result) => {
+          resolve(result.rowCount);
+          client.end();
+        })
+        .catch(e => reject(e));
+    }).catch(e => reject(e));
+});
 
-export { getAll, createUser, getUser };
+
+export {
+  getAll, createUser, getUser, clearTable,
+};
 
 
 // CREATE TABLE users(user_id serial PRIMARY KEY, user_name text NOT NULL, user_email text UNIQUE NOT NULL, user_password text NOT NULL);
