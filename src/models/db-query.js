@@ -84,3 +84,6 @@ export {
 
 // CREATE TABLE users(user_id serial PRIMARY KEY, user_name text NOT NULL, user_email text UNIQUE NOT NULL, user_password text NOT NULL);
 // const client = new Client({ connectionString, ssl: true });
+// - psql -c 'CREATE DATABASE testing;' -U postgres
+ // - psql -c 'CREATE TABLE users(user_id serial PRIMARY KEY, user_name text NOT NULL, user_email text UNIQUE NOT NULL, user_password text NOT NULL);' -U postgres
+
