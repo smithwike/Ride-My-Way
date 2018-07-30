@@ -3,8 +3,6 @@ node_js:
   - "stable"
 services:
   - postgresql
-addons:
-  postgresql: "9.5"
 env:
   global:
     - CC_TEST_REPORTER_ID=570d9defa9305ef3bb2e1608a72ddbf7c4989b52a0b2f968d1493d7e18a5511e
