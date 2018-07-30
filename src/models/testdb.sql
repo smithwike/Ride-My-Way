@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS ridemyway_test;
-CREATE DATABASE ridemyway_test;
+DROP DATABASE IF EXISTS testing;
+CREATE DATABASE testing;
 
  CREATE TABLE users
  (
