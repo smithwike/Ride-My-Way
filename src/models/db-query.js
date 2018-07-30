@@ -4,7 +4,7 @@ let connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/ri
 
 if (process.env.current_env === 'test') {
   connectionString = 'postgres://localhost:5432/ride-my-way-test';
-} else if(process.env.current_env === 'test-travis'){
+} else if (process.env.current_env === 'test-travis') {
   connectionString = 'postgres://postgres@localhost/testing';
 }
 
