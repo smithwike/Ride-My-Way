@@ -9,7 +9,8 @@ describe('POST /signup', () => {
     clearTable()
       .then(() => {
         done();
-      });
+      })
+      .catch(e => done(e));
   });
   it('should create a new user with valid data', () => request(app)
     .post('/api/v1/auth/signup')
