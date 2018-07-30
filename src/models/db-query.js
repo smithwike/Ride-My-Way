@@ -3,7 +3,8 @@ import { Client } from 'pg';
 let connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/ride-my-way';
 
 if (process.env.current_env === 'test') {
-  connectionString = 'postgres://localhost:5432/ride-my-way-test';
+  //connectionString = 'postgres://localhost:5432/ride-my-way-test';
+  connectionString = 'postgres://postgres@localhost/testing';
 } else if (process.env.current_env === 'test-travis') {
   connectionString = 'postgres://postgres@localhost/testing';
 }
