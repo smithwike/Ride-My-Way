@@ -18,7 +18,7 @@ const validateUser = (req, res, next) => {
   if (validEmail && validPassword && validName) {
     next();
   } else {
-    res.status(400).send({ error: 'Invalid credentials. Make sure email is valid, name and password are at least 3 and 6 characters long respectively' });
+    res.status(400).send({ error: 'Invalid input. Make sure email is valid, name and password are at least 3 and 6 characters long respectively' });
   }
 };
 

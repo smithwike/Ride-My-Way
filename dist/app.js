@@ -24,7 +24,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var port = process.env.PORT || 5008;
 var app = (0, _express2.default)();
-
 app.use(_bodyParser2.default.json());
 app.use('/api/v1/rides', _rides2.default);
 app.use('/api/v1/auth', _auth2.default);
