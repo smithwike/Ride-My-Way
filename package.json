@@ -43,7 +43,6 @@
     "test": "export current_env=test || SET \"current_env=test\" && npm run build && nyc mocha dist/test/*.test.js --exit --timeout=20000",
     "test-travis": "export current_env=test-travis || SET \"current_env=test-travis\" && npm run build && nyc mocha dist/test/*.test.js --exit --timeout=20000",
     "lint": "./node_modules/.bin/eslint src --fix",
-    "testdb:migrate": "psql -U postgres -f src/models/testdb.sql",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "engines": {
