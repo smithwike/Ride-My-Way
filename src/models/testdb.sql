@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS testing;
 CREATE DATABASE testing;
-CREATE TABLE IF NOT EXISTS users
+\connect testing
+CREATE TABLE users
  (
  	user_id serial PRIMARY KEY, 
     user_name text NOT NULL, 

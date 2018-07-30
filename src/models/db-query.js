@@ -78,5 +78,7 @@ export {
 };
 
 
-// CREATE TABLE users(user_id serial PRIMARY KEY, user_name text NOT NULL, user_email text UNIQUE NOT NULL, user_password text NOT NULL);
+// CREATE TABLE users(user_id serial PRIMARY KEY, user_name text NOT NULL,
+// user_email text UNIQUE NOT NULL, user_password text NOT NULL);
+
 // const client = new Client({ connectionString, ssl: true });

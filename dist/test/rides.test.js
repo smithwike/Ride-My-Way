@@ -35,7 +35,7 @@ describe('GET /rides/<rideId>', function () {
 
   it('should return 404 with invalid ride id', function () {
     return (0, _supertest2.default)(_app2.default).get('/api/v1/rides/qruhn9b5h4jk4f8u').set('Accept', 'application/json').expect(404).then(function (response) {
-      (0, _expect2.default)(response.body.error.error).toContain('Invalid ride');
+      (0, _expect2.default)(response.body.error).toContain('Invalid ride');
     });
   });
 });
@@ -66,13 +66,13 @@ describe('POST /rides/<rideId>/requests', function () {
 
   it('should not make ride request with invalid data', function () {
     return (0, _supertest2.default)(_app2.default).post('/api/v1/rides/qruhn9b5h4jk4f8uiw/requests').send({}).set('Accept', 'application/json').expect(400).then(function (response) {
-      (0, _expect2.default)(response.body.error.error).toContain('append the name parameter');
+      (0, _expect2.default)(response.body.error).toContain('append the name parameter');
       (0, _expect2.default)(_rideOffers2.default[0].requests.length).toBe(1);
     });
   });
   it('should not make ride request with invalid id', function () {
     return (0, _supertest2.default)(_app2.default).post('/api/v1/rides/qruhn9b5h4jk4f8uik/requests').send({ name: 'John Doe' }).set('Accept', 'application/json').expect(404).then(function (response) {
-      (0, _expect2.default)(response.body.error.error).toContain('Invalid ride');
+      (0, _expect2.default)(response.body.error).toContain('Invalid ride');
       (0, _expect2.default)(_rideOffers2.default[0].requests.length).toBe(1);
     });
   });

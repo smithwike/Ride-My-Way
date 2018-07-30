@@ -27,7 +27,7 @@ describe('GET /rides/<rideId>', () => {
     .set('Accept', 'application/json')
     .expect(404)
     .then((response) => {
-      expect(response.body.error.error).toContain('Invalid ride');
+      expect(response.body.error).toContain('Invalid ride');
     }));
 });
 describe('POST /rides', () => {
@@ -70,7 +70,7 @@ describe('POST /rides/<rideId>/requests', () => {
     .set('Accept', 'application/json')
     .expect(400)
     .then((response) => {
-      expect(response.body.error.error).toContain('append the name parameter');
+      expect(response.body.error).toContain('append the name parameter');
       expect(rideOffers[0].requests.length).toBe(1);
     }));
   it('should not make ride request with invalid id', () => request(app)
@@ -79,7 +79,7 @@ describe('POST /rides/<rideId>/requests', () => {
     .set('Accept', 'application/json')
     .expect(404)
     .then((response) => {
-      expect(response.body.error.error).toContain('Invalid ride');
+      expect(response.body.error).toContain('Invalid ride');
       expect(rideOffers[0].requests.length).toBe(1);
     }));
 });

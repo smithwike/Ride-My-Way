@@ -4,19 +4,17 @@ import rideOffers from '../models/rideOffers';
 
 const rideCreateSuccess = { message: 'Your offer has been successfully created' };
 const rideRequestSuccess = { message: 'Your request has been created' };
-const error = {
-  error: '',
-  status: 401,
-};
 const ridesRouter = express.Router();
+
 const verifyParameters = (req, res, next) => {
   const parameter = req.body;
   if (parameter && parameter.destination && parameter.takeOffTime && parameter.totalSeats) {
     next();
   } else {
-    error.error = 'Please input all the required parameters';
-    error.status = 400;
-    res.status(400).send(error);
+    res.status(400).send({
+      error: 'Please input all the required parameters',
+      status: 400,
+    });
   }
 };
 
@@ -24,19 +22,27 @@ ridesRouter.get('/', (req, res) => {
   res.send(rideOffers);
 });
 
-ridesRouter.get('/:id', (req, res, next) => {
+ridesRouter.get('/:id', (req, res) => {
   const rideId = req.params.id;
+  let isFound = false;
+  let foundItem;
   rideOffers.forEach((item) => {
     if (item.id === rideId) {
-      res.send(item);
+      foundItem = item;
+      isFound = true;
     }
   });
-  error.error = 'Invalid ride';
-  error.status = 404;
-  next(error);
+  if (isFound) {
+    res.send(foundItem);
+  } else {
+    res.status(404).send({
+      error: 'Invalid ride',
+      status: 404,
+    });
+  }
 });
 
-ridesRouter.post('/', verifyParameters, (req, res, next) => {
+ridesRouter.post('/', verifyParameters, (req, res) => {
   const reqBody = req.body;
   const newRide = {
     id: uniqid(),
@@ -48,13 +54,14 @@ ridesRouter.post('/', verifyParameters, (req, res, next) => {
   if (rideOffers.push(newRide)) {
     res.send(rideCreateSuccess);
   } else {
-    error.error = 'An unknown error occured';
-    error.status = 500;
-    next(error);
+    res.status(500).send({
+      error: 'An unknown error occured',
+      status: 500,
+    });
   }
 });
 
-ridesRouter.post('/:id/requests', (req, res, next) => {
+ridesRouter.post('/:id/requests', (req, res) => {
   const reqBody = req.body;
   const rideId = req.params.id;
   let isAdded = false;
@@ -68,14 +75,16 @@ ridesRouter.post('/:id/requests', (req, res, next) => {
     if (isAdded) {
       res.send(rideRequestSuccess);
     } else {
-      error.error = 'Invalid ride';
-      error.status = 404;
-      next(error);
+      res.status(404).send({
+        error: 'Invalid ride',
+        status: 404,
+      });
     }
   } else {
-    error.error = 'Please append the name parameter in your request';
-    error.status = 400;
-    next(error);
+    res.status(400).send({
+      error: 'Please append the name parameter in your request',
+      status: 400,
+    });
   }
 });
 

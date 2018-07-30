@@ -10,9 +10,8 @@ var _pg = require('pg');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/ride-my-way';
 
 if (process.env.current_env === 'test') {
-  connectionString = 'postgres://localhost:5432/ride-my-way-test';
+  connectionString = 'postgres://localhost:5432/testing';
 }
-
 var usersTable = 'users';
 // const orderTable = 'orders';
 
@@ -93,6 +92,8 @@ exports.createUser = createUser;
 exports.getUser = getUser;
 exports.clearTable = clearTable;
 
-// CREATE TABLE users(user_id serial PRIMARY KEY, user_name text NOT NULL, user_email text UNIQUE NOT NULL, user_password text NOT NULL);
+// CREATE TABLE users(user_id serial PRIMARY KEY, user_name text NOT NULL,
+// user_email text UNIQUE NOT NULL, user_password text NOT NULL);
+
 // const client = new Client({ connectionString, ssl: true });
 //# sourceMappingURL=db-query.js.map
