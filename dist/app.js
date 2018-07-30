@@ -28,15 +28,6 @@ app.use(_bodyParser2.default.json());
 app.use('/api/v1/rides', _rides2.default);
 app.use('/api/v1/auth', _auth2.default);
 
-// error handler
-app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.json({
-    err: err.message,
-    error: req.app.get('env') === 'development' ? err : {}
-  });
-});
-
 app.listen(port, function () {
   console.log('Listening on port ' + port + '.');
 });
